@@ -4,8 +4,8 @@ export const TicTacToeGame = () => {
     let [myArray, setNewData] = useState(new Array(9).fill(''))
     const [userSlctdSymbol, setUserSymbol] = useState('')
     const [isGameStart, setGameStart] = useState(false)
+    const [showGameWindow, setGameWindow] = useState(true)
     const gameSymbolList : string[] = ['X', '0']
-    console.log('hi naman')
 
     useEffect(() => {
         let count = 0;
@@ -45,8 +45,11 @@ export const TicTacToeGame = () => {
                 }
             }, 1000)
         }
-        else{
+        else if(!userSlctdSymbol){
             alert('First select your symbol X or 0')
+        }
+        else{
+            alert('Please click on confirm button');
         }
     }
 
@@ -73,12 +76,19 @@ export const TicTacToeGame = () => {
     const checkWhoWins = () => {
         const rowPrediction= rowWinningCondition()
         if(rowPrediction == 'User has won'){
-            alert('Congrats you have win')
+            setTimeout(() => {
+                alert('Congrats you have win')  
+            }, 500)
+            setGameWindow(false)
         }
         else if(rowPrediction == "Computer has won"){
-            alert('Sorry you loss the game')
+            setTimeout(() => {
+                alert('Sorry you loss the game')
+            }, 500)
+            setGameWindow(false)
         }
     }
+
     const rowWinningCondition = () => {
         let row1 = [0,1,2];
         let row2 = [3,4,5];
@@ -133,12 +143,12 @@ export const TicTacToeGame = () => {
             return ''
         }
     }
-    const columnWinningCondition = () => {
+    // const columnWinningCondition = () => {
 
-    }
-    const diagonalWinningCondition = () => {
+    // }
+    // const diagonalWinningCondition = () => {
         
-    }
+    // }
     return (
         <>
             <div className={styles['game-body']}>
@@ -159,9 +169,9 @@ export const TicTacToeGame = () => {
                     </div>}
                 </div>
 
-                <div className={styles['game-container']}>
+                {showGameWindow && <div className={styles['game-container']}>
                    {myArray?.length && myArray.map((item: string, index: number) => <div key={index} onClick={() => onSlctBox(index)} >{item}</div>)}
-                </div>
+                </div>}
             </div>
         </>
     )
