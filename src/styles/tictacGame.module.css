@@ -1,3 +1,4 @@
+@media screen and (min-width: 769px) {
 .game-container{
     width: 20%;
     height: 420px;
@@ -9,7 +10,18 @@
     grid-template-rows: 140px 140px 140px;
     grid-template-columns: 33.33% 33.33% 33.33%;
 }
+}
 
+@media screen and (max-width: 768px){
+    .game-container{
+        display: grid;
+        position: absolute;
+        top: 300px;
+        left: 10%;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+    }
+}
 .game-body{
     background-color: aqua;
     height: 100vh;
